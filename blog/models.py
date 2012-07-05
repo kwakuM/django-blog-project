@@ -21,7 +21,7 @@ class Post(models.Model):
 	post_body=models.TextField()
 	category=models.ForeignKey(Category)
 	post_create_date=models.DateField()
-	post_updated_date=models.DateField()
+	post_updated_date=models.DateField().auto_now
 
 	def __unicode__(self):
 	        return self.post_title
