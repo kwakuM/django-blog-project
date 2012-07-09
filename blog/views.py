@@ -1,8 +1,9 @@
 # Create your views here.
 from django.http import HttpResponse
 def post_search(request,author):
-	response="Written by " + str(author)
-	return HttpResponse(response)
+	response=Post.objects.filter(post_body__contains=str(author))
+                    #"Written by " + str(author)
+    	return HttpResponse(response)
 
 """
 This code should be copied and pasted into your blog/views.py file before you begin working on it.
