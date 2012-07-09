@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse
-def views.post_search(request,author):
-	response="Written by" + str(author)
+def post_search(request,author):
+	response="Written by " + str(author)
 	return HttpResponse(response)
 
 """
@@ -23,10 +23,12 @@ def post_list(request):
     return HttpResponse('This should be a list of posts!')
 
 def post_detail(request, id, showComments=False):
-    pass
+	post_list = Post.objects.all()
+    	return HttpResponse(post_list)
     
-def post_search(request, term):
-    pass
+"""def post_search(request,author):
+	term=post_search()
+    return HttpResponse(term)"""
 
 def home(request):
     print 'it works'
