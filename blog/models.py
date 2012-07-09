@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -21,7 +22,7 @@ class Post(models.Model):
 	post_body=models.TextField()
 	category=models.ForeignKey(Category)
 	post_create_date=models.DateField()
-	post_updated_date=models.DateField().auto_now
+	post_updated_date=models.DateField()
 
 	def __unicode__(self):
 	        return self.post_title
@@ -34,6 +35,8 @@ class Comment(models.Model):
 
 	def __unicode__(self):
 	        return self.comment_body
+	def limit_body(self):
+		return self.body[:60]
 
 
 class Reply(models.Model):
@@ -45,6 +48,30 @@ class Reply(models.Model):
 	def __unicode__(self):
 	        return self.reply_body
 
+class comment_inline(admin.TabularInline):
+	model=Comment
+
+
+
+class PostAdmin(admin.ModelAdmin):
+	list_display = ('post_title','post_create_date','post_updated_date')
+	list_filter = ('post_title','post_body')
+	search_fields = ('post_title','post_body')
+	ordering = ('post_title','post_body')
+	inline=[comment_inline]
+
+
+
+class commentAdmin(admin.ModelAdmin):
+	inlines=[comment_inline]
+
+
+
+
+"""class PostAdmin(admin.ModelAdmin):
+	title=models.CharField(max_length=70)
+	date_created=models.DateField()
+	date_updated=models.DateField()"""
 
 	        
 
