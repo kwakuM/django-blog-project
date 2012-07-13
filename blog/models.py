@@ -23,9 +23,11 @@ class Post(models.Model):
 	category=models.ForeignKey(Category)
 	post_create_date=models.DateField()
 	post_updated_date=models.DateField()
-
+	#post_comments=models.TextField()
 	def __unicode__(self):
 	        return self.post_title
+	def limit_post(self):
+		return self.post_body[:50]
 
 class Comment(models.Model):
 	comment_date=models.DateField()
@@ -63,7 +65,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class commentAdmin(admin.ModelAdmin):
-	inlines=[comment_inline]
+	inline=[comment_inline]
 
 
 
@@ -71,4 +73,4 @@ class commentAdmin(admin.ModelAdmin):
 
 
 
-	
+

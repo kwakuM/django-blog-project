@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>SEARCH PAGE</title>
+</head>
+{%extends "blog/base.html" %}
+<body>
+{%block content%}
+<p>The term {{term}} exists in the follow post(s):</p>
+{%for post in posts%}
+	<li>Post title:{{post.post_title}}
+	</li>
+{%endfor%}
+{%endblock %}
+</body>
+</html>

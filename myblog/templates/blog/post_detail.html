@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>POST DETAILS</title>
+</head>
+<body>
+{%extends "blog/base.html"%}
+{%block content%}
+{%for post in posts%}
+	<li>{{post.post_title}}</li>
+<li>{{post.post_body}}</li> 
+<li>{{post.post_create_date}}</li>
+<li>{{post.post_updated_date}}
+	</li>
+{% endfor %}
+{%endblock%}
+</body>
+</html>
